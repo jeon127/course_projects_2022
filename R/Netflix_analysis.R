@@ -3,7 +3,7 @@
 library(tidytuesdayR)
 tuesdata <- tidytuesdayR::tt_load('2021-04-20')
 netflix <- tuesdata$netflix_titles
-write.csv(netflix, "/Users/arjunmanohar/OneDrive - Hult Students/Hult MBAN Programme/Text Analytics/Datasets/netflix_data.csv")
+write.csv(netflix, "/Users/kaitlingarcia/OneDrive - Hult Students/Hult MBAN Programme/Text Analytics/Datasets/netflix_data.csv")
 
 library(dplyr)
 library(stringr)
