@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title>Homework 3 - Part 2</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Salespeople calculation for commission"/>
+    <meta name="robots" content="index,follow"/> 
+     <!-- <link rel="stylesheet" href=".css">-->
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
+</head>
+    
+<body>
+    <h1> CNIT 133 Homework 3 - Part 2</h1>
+    <div>
+        <table> 
+            <tr>
+                <td>Salesperson: </td>
+                <td><input type="text" id="salesperson-name" title="Please make sure that the salesperson's name is spelled correctly."></td>
+            </tr>
+        </table>
+        <br>
+        <tr><h3>Input the number of items sold for each item number: </h3></tr>
+    </div>
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td>Item 1: </td>
+                <td><input id="item-one" type="number"></td>
+            </tr>
+            <tr>
+                <td>Item 2: </td>
+                <td><input id="item-two" type="number"></td>
+            </tr>
+            <tr>
+                <td>Item 3: </td>
+                <td><input id="item-three" type="number"></td>
+            </tr>
+            <tr>
+                <td>Item 4: </td>
+                <td><input id="item-four" type="number"></td>
+            </tr>
+            <tr>
+                <br>
+                <td>
+                <input type="button" value="Submit" onclick="calculateWeeklyEarnings()"/>
+                </td>
+                <td>
+                <input type="button" value="Reset" onclick="reset2()"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="error-div"> </div>
+        <br>
+    <div>
+        <table>
+            <tr>
+                <td><h4>Item #</h4></td>
+                <td><h4>Price</h4></td>
+                <td><h4>Number Sold</h4></td>
+                <td><h4>Total</h4></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td id="price-one">239.99</td>
+                <td><input type="text" id="numeric-sells-one"></td>
+                <td><input type="text" id="total-sells-one"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td id="price-two">129.75</td>
+                <td><input type="text" id="numeric-sells-two"></td>
+                <td><input type="text" id="total-sells-two"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td id="price-three">99.95</td>
+                <td><input type="text" id="numeric-sells-three"></td>
+                <td><input type="text" id="total-sells-three"></td>
+            </tr><tr>
+                <td>4</td>
+                <td id="price-four">350.89</td>
+                <td><input type="text" id="numeric-sells-four"></td>
+                <td><input type="text" id="total-sells-four"></td>
+            </tr><tr>
+                <td>Total Amount Sold: </td>
+                <td style="display: transparent;"></td>
+                <td style="display: transparent;"></td>
+                <td><input type="text" id="total-amount-sold"></td>
+            </tr><tr>
+                <td>Total Weekly Earnings: </td>
+                <td style="display: transparent;"></td>
+                <td style="display: transparent;"></td>
+                <td><input type="text" id="total-weekly-earnings"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="home-work-redirection">
+        <a href="https://hills.ccsf.edu/~kgarc127/CNIT133/CNIT133-htmlsite/index.html"> Homepage </a>
+        <a href="part3.html"> Next </a> 
+    </div>
+    <script>
+        
+        $(function() {
+            $("#salesperson-name").tooltip();
+        });
+        
+        function calculateWeeklyEarnings(){
+            var item1Amount = document.getElementById("item-one").value;
+            var item2Amount = document.getElementById("item-two").value;
+            var item3Amount = document.getElementById("item-three").value;
+            var item4Amount = document.getElementById("item-four").value;
+            var totalItem1 = 0;
+            var totalItem2 = 0;
+            var totalItem3 = 0;
+            var totalItem4 = 0;
+            var itemsTotal = 0;
+            var weeklyEarnings = 0;
+            
+            
+            var item1NumericAmount = parseInt(item1Amount);
+            var item2NumericAmount = parseInt(item2Amount);
+            var item3NumericAmount = parseInt(item3Amount);
+            var item4NumericAmount = parseInt(item4Amount);
+            
+            document.getElementById("numeric-sells-one").value= item1NumericAmount;
+            document.getElementById("numeric-sells-two").value= item2NumericAmount;
+            document.getElementById("numeric-sells-three").value= item3NumericAmount;
+            document.getElementById("numeric-sells-four").value= item4NumericAmount;
+            
+            var priceItem1 = 239.99;
+            var priceItem2 = 129.75;
+            var priceItem3 = 99.95;
+            var priceItem4 = 350.89;
+            
+            var totalItem1 = item1NumericAmount * priceItem1;
+            var totalItem2 = item2NumericAmount * priceItem2;
+            var totalItem3 = item3NumericAmount * priceItem3;
+            var totalItem4 = item4NumericAmount * priceItem4;
+            
+            document.getElementById("total-sells-one").value= totalItem1.toFixed(2);
+            document.getElementById("total-sells-two").value= totalItem2.toFixed(2);
+            document.getElementById("total-sells-three").value= totalItem3.toFixed(2);
+            document.getElementById("total-sells-four").value= totalItem4.toFixed(2);
+            
+            var itemsTotal = totalItem1 + totalItem2 + totalItem3 + totalItem4;
+            document.getElementById("total-amount-sold").value = itemsTotal.toFixed(2);
+            console.log(itemsTotal);
+            var weeklyEarnings = 200 + (.09 * itemsTotal);
+            document.getElementById("total-weekly-earnings").value= weeklyEarnings.toFixed(2);
+            console.log(weeklyEarnings);
+        }
+        
+        function reset2(){
+            document.getElementById("salesperson-name").value = "";
+            document.getElementById("item-one").value = "";
+            document.getElementById("item-two").value = "";
+            document.getElementById("item-three").value = "";
+            document.getElementById("item-four").value = "";
+            document.getElementById("numeric-sells-one").value = "";
+            document.getElementById("total-sells-one").value = "";
+            document.getElementById("numeric-sells-two").value = "";
+            document.getElementById("total-sells-two").value = "";
+            document.getElementById("numeric-sells-three").value = "";
+            document.getElementById("total-sells-three").value = "";
+            document.getElementById("numeric-sells-four").value = "";
+            document.getElementById("total-sells-four").value = "";
+            document.getElementById("total-amount-sold").value = "";
+            document.getElementById("total-weekly-earnings").value = "";
+        }
+    </script>
+</body>
+</html>

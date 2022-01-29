@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title>Homework 3 - Part 3</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Temperature calculation"/>
+    <meta name="robots" content="index,follow"/> 
+    <!-- <link rel="stylesheet" href=".css">-->
+    <script>
+        
+        function convertToCelsius(degrees){
+            var degrees = document.getElementById("temperature-input").value;
+            if(isValid()){
+                var celsiusCalculation = 5/9 * (degrees - 32);
+                document.getElementById("converted-degrees").innerHTML= Math.round(celsiusCalculation) + " C";
+            } 
+        }
+        
+        function convertToFarenheit(){
+            var degrees = document.getElementById("temperature-input").value;
+            if(isValid()){
+                var farenheitCalculation = (9/5 * degrees) + 32;
+                document.getElementById("converted-degrees").innerHTML= Math.round(farenheitCalculation) + " F";
+            }
+        }
+        
+        function isValid(){
+            var inputToCheck = document.getElementById("temperature-input").value;
+            var regex = /^(?:-?\d+)?$/;
+            if(!inputToCheck.match(regex)){
+                var error = "Please input just numbers.";
+                document.getElementById("display-error").innerHTML= error;
+                return false;
+            } else {
+                document.getElementById("display-error").innerHTML= "";
+                return true;
+            }
+        }
+    </script>
+</head>
+    
+<body>
+    <h1> CNIT 133 Homework 3 - Part 3 </h1>
+    <div>
+        <h2> Farenheit/Celsius conversor. </h2>
+        <h3>Enter a numeric temperature in the box and click your prefered button to convert temperature either to Celsius or Farenheit degrees. </h3>
+        <div>
+            <input type="number" id="temperature-input" style="width: 50px; height: 25px; margin-left: 75px;">
+            <br>
+            <br>
+            <textarea id="converted-degrees" readonly style="width: 50px; height: 25px; margin-left: 75px;"></textarea>
+            <div id="display-error">
+            </div>
+            <div id="calcutale-buttons" style="width: 200px; height: 25px;">
+            <input type="button" value="Calculate Celsius" onclick="convertToCelsius()">    
+            <input type="button" value="Calculate Farenheit" onclick="convertToFarenheit()">
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="home-work-redirection">
+        <a href="https://hills.ccsf.edu/~kgarc127/CNIT133/CNIT133-htmlsite/index.html"> Homepage </a>
+        <a href="part4.html"> Next </a> 
+    </div>
+    
+</body>
+</html>

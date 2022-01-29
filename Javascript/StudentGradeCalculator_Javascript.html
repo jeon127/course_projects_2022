@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title>Homework 3 - Part 1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Webpage that calculates students grades"/>
+    <meta name="robots" content="index,follow"/> 
+    <!--<link rel="stylesheet" href=".css">-->
+    <script>
+        function calculateGrade(){
+            
+            var hwAverage = document.getElementById("homework-average").value;
+            var midterm =document.getElementById("midterm-exam").value;
+            var finalExam = document.getElementById("final-exam-score").value;
+            var participation = document.getElementById("participation").value;
+            var finalGrade = 0;
+
+            if(!isValid(hwAverage)){
+                return;
+            } else if(!isValid(midterm)){
+                return;
+            } else if(!isValid(finalExam)){
+                return;
+            } else if(!isValid(participation)){
+                return;
+            }
+
+            var hwAverageNum = parseInt(hwAverage);
+            var midtermNum = parseInt(midterm);
+            var finalExamNum = parseInt(finalExam);
+            var participationNum = parseInt(participation);
+
+            var finalGrade = (.5 * hwAverageNum) + (.2 * midtermNum) + (.2 * finalExamNum) + (.1 * participationNum)
+            
+            var letterGrade = "F";
+
+            if(finalGrade >= 90){
+                letterGrade = "A";
+            } else if(finalGrade >= 80) {
+                letterGrade = "B";
+            } else if(finalGrade >= 70) {
+                letterGrade = "c";
+            } else if(finalGrade >= 60) {
+                letterGrade = "D";
+            }
+            document.getElementById("final-grade").innerHTML = letterGrade;
+            if (finalGrade < 70){
+                document.getElementById("final-grade").innerHTML = letterGrade + "<h2 style='font-size:24; color:red;'> Student must retake the course!</h2>";
+            } 
+    }
+
+    function isValid(inputNumber){
+        var error = "Input a number between 0 and 100";
+        if(inputNumber >= 0 && inputNumber <= 100){
+            return true;
+        } else {
+            document.getElementById("error-div").innerHTML = error;
+            return false;
+        }    
+    }
+
+    function reset2(){
+        document.getElementById("homework-average").value = "";
+        document.getElementById("midterm-exam").value = "";
+        document.getElementById("final-exam-score").value = "";
+        document.getElementById("participation").value = "";
+        document.getElementById("final-grade").innerHTML = "";
+        document.getElementById("error-div").innerHTML = "";
+        }
+    </script>
+</head>
+    
+<body>
+    <h1> CNIT 133 Homework 3 - Part 1 </h1>
+    <div>
+        <h2> Student Grades </h2>
+    </div>
+    <div>
+        <form id="studentsGrades" class="form">
+            <table>
+                <tr>
+                    <td>Homework Average: </td>
+                    <td><input id="homework-average" type="number"></td>
+                </tr>
+                <tr>
+                    <td>Mid-term Exam Score: </td>
+                    <td><input id="midterm-exam" type="number"></td>
+                </tr>
+                <tr>
+                    <td>Final Exam Score: </td>
+                    <td><input id="final-exam-score" type="number"></td>
+                </tr>
+                <tr>
+                    <td>Participation: </td>
+                    <td><input id="participation" type="number"></td>
+                </tr> 
+                <tr>
+                    <td>Final Grade: </td>
+                    <td>
+                        <div id="final-grade"></div>
+                    </td>
+                </tr> 
+            </table>
+            <br>
+            <br>
+            <input type="button" value="Calculate" onclick="calculateGrade()">
+            <input type="button" value="Reset" onclick="reset2()">
+        </form>
+        <div id="error-div">
+        </div>
+    </div>
+    <div class="home-work-redirection">
+        <a href="https://hills.ccsf.edu/~kgarc127/CNIT133/CNIT133-htmlsite/index.html"> Homepage </a>
+        <a href="part2.html"> Next </a> 
+    </div>
+</body>
+</html>
